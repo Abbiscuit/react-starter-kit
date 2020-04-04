@@ -24,7 +24,7 @@ import MailIcon from '@material-ui/icons/Mail';
 
 import { Link } from 'react-router-dom';
 
-const HeaderDrawer = props => {
+const HeaderDrawer = (props) => {
   const { mailCount, currentUser } = props;
   const [state, setState] = useState(false);
 
@@ -43,7 +43,12 @@ const HeaderDrawer = props => {
           <IconButton color="inherit" onClick={handleOpen}>
             <MenuIcon />
           </IconButton>
-          <Typography style={{ flexGrow: 1 }}>react-starter-kit</Typography>
+          <Typography style={{ flexGrow: 1 }}>
+            Lemon
+            <span role="img" aria-label="Lemon">
+              🍋
+            </span>
+          </Typography>
 
           <IconButton color="inherit" component={Link} to="/mailbox">
             <Badge badgeContent={mailCount} color="secondary">
@@ -68,7 +73,7 @@ const HeaderDrawer = props => {
       <Drawer open={state} onClose={handleClose}>
         <Box
           style={{
-            width: 300
+            width: 300,
           }}
           onClick={handleClose}
           onKeyDown={handleClose}

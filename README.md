@@ -1,1 +1,1 @@
-# Starter Kit (React, Material-UI and Firebase)
+# Lemon Chat
