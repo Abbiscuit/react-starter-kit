@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -9,6 +9,9 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Profile from './pages/Profile';
 import MailBox from './pages/MailBox';
+import Login from './pages/Login';
+import NotFound from './pages/NotFound';
+import Signup from './pages/Signup';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -28,7 +31,7 @@ function App() {
   const params = { currentUser, mailCount, friends, mail };
 
   useEffect(() => {
-    setCurrentUser('Hiroshi');
+    setCurrentUser(null);
     setMailCount(mail.length);
   }, [mail.length]);
 
@@ -56,16 +59,28 @@ function App() {
           path="/profile"
           render={props => <Profile {...props} {...params} />}
         />
-        <Route component={NotFound} />
+        <Route
+          exact
+          path="/login"
+          render={props =>
+            currentUser ? <Redirect to="/" /> : <Login {...props} {...params} />
+          }
+        />
+        <Route
+          exact
+          path="/signup"
+          render={props =>
+            currentUser ? (
+              <Redirect to="/" />
+            ) : (
+              <Signup {...props} {...params} />
+            )
+          }
+        />
+        <Route render={props => <NotFound {...props} {...params} />} />
       </Switch>
     </MuiThemeProvider>
   );
 }
-
-const NotFound = () => (
-  <div>
-    <h1>Not Found...</h1>
-  </div>
-);
 
 export default App;

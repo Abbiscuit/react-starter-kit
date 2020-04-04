@@ -6,9 +6,9 @@ import Grid from '@material-ui/core/Grid';
 
 const MailBox = props => {
   console.log(props);
-  const { mailCount } = props;
+  const { mailCount, currentUser } = props;
   return (
-    <CommonFrame mailCount={mailCount}>
+    <CommonFrame currentUser={currentUser} mailCount={mailCount}>
       <Grid container style={{ padding: 10 }}>
         <Grid item xs={12}>
           <Typography variant="h6" component="h2">
