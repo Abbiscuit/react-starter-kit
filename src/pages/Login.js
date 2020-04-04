@@ -46,7 +46,7 @@ const Login = props => {
   return (
     <CommonFrame currentUser={currentUser} mailCount={mailCount}>
       <Paper className={classes.paper}>
-        <Typography variant="h6" component="h1" gutterBottom>
+        <Typography variant="h4" component="h2" gutterBottom>
           Login
         </Typography>
         <form name="form" onSubmit={handleSubmit} autoComplete="off">

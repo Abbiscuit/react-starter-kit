@@ -15,16 +15,27 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Home = props => {
-  const { currentUser, mailCount } = props;
+  const { currentUser } = props;
   const classes = useStyles();
+
+  const content = (
+    <Paper className={classes.paper}>
+      <Typography variant="h6" component="h1" gutterBottom>
+        {'Your Content comes here.'}
+      </Typography>
+    </Paper>
+  );
+
+  const welcome = (
+    <Paper className={classes.paper}>
+      <Typography variant="h6" component="h1" gutterBottom>
+        {'Welcome to React Starter Kit'}
+      </Typography>
+    </Paper>
+  );
+
   return (
-    <CommonFrame currentUser={currentUser} mailCount={mailCount}>
-      <Paper className={classes.paper}>
-        <Typography variant="h6" component="h1" gutterBottom>
-          Home
-        </Typography>
-      </Paper>
-    </CommonFrame>
+    <CommonFrame {...props}>{currentUser ? content : welcome}</CommonFrame>
   );
 };
 

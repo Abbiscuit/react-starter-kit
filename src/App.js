@@ -19,9 +19,14 @@ function App() {
     { id: 1, content: 'こんにちは！私の名前はトムハンクスです！' },
     { id: 2, content: 'こんにちは！明日からピクニックです！' },
     { id: 3, content: 'こんにちは！楽しいですね！' },
-    { id: 4, content: '楽しいことばかりだぜ！！！' }
+    { id: 4, content: '楽しいことばかりだぜ！！！' },
+    {
+      id: 5,
+      content:
+        '旅行の計画をしよう！！！旅行の計画をしよう！！！旅行の計画をしよう！！！旅行の計画をしよう！！！旅行の計画をしよう！！！旅行の計画をしよう！！！旅行の計画をしよう！！！旅行の計画をしよう！！！旅行の計画をしよう！！！旅行の計画をしよう！！！旅行の計画をしよう！！！旅行の計画をしよう！！！旅行の計画をしよう！！！旅行の計画をしよう！！！'
+    }
   ]);
-  const [mailCount, setMailCount] = useState(20);
+  const [mailCount, setMailCount] = useState(0);
   const [friends, setFriends] = useState([
     { id: 1, text: 'lorem super hellooo', username: 'John' },
     { id: 2, text: 'love love hellooo', username: 'Mike' },
@@ -31,9 +36,10 @@ function App() {
   const params = { currentUser, mailCount, friends, mail };
 
   useEffect(() => {
-    setCurrentUser(null);
-    setMailCount(mail.length);
-  }, [mail.length]);
+    setCurrentUser('Hiroshi Kadokura');
+
+    if (currentUser) return setMailCount(mail.length);
+  }, [currentUser, mail.length]);
 
   return (
     <MuiThemeProvider theme={theme}>
@@ -52,12 +58,24 @@ function App() {
         <Route
           exact
           path="/mailbox"
-          render={props => <MailBox {...props} {...params} />}
+          render={props =>
+            currentUser ? (
+              <MailBox {...props} {...params} />
+            ) : (
+              <Redirect to="/login" />
+            )
+          }
         />
         <Route
           exact
           path="/profile"
-          render={props => <Profile {...props} {...params} />}
+          render={props =>
+            currentUser ? (
+              <Profile {...props} {...params} />
+            ) : (
+              <Redirect to="/login" />
+            )
+          }
         />
         <Route
           exact

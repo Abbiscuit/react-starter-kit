@@ -86,12 +86,12 @@ const HeaderDrawer = props => {
               </ListItemIcon>
               <ListItemText primary="プロフィール" />
             </ListItem>
-            <ListItem button component={Link} to="/account-setting">
+            {/*       <ListItem button component={Link} to="/account-setting">
               <ListItemIcon>
                 <SettingsIcon />
               </ListItemIcon>
               <ListItemText primary="アカウント設定" />
-            </ListItem>
+            </ListItem> */}
             <ListItem button component={Link} to="/about">
               <ListItemIcon>
                 <InfoIcon />
